@@ -1,23 +1,37 @@
 package com.airtribe.LearnerManagementSystem.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+
+
+@Entity
 public class Learner {
 
     private String name;
     private String email;
     private String phoneNumber;
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    public Learner(String name, String email, String phoneNumber, String id) {
+    public Learner(String name, String email, String phoneNumber, long id) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.id = id;
     }
 
-    public String getId() {
+    public Learner() {
+        // Default constructor
+    }
+
+    public long getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
