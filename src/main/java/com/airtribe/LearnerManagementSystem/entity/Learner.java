@@ -1,7 +1,10 @@
 package com.airtribe.LearnerManagementSystem.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
@@ -24,8 +27,18 @@ public class Learner {
         this.id = id;
     }
 
+    @ManyToMany(mappedBy = "learners")
+    private List<Cohort> cohorts;
+
     public Learner() {
         // Default constructor
+    }
+
+    public List<Cohort> getCohorts() {
+        return cohorts;
+    }
+    public void setCohorts(List<Cohort> cohorts) {
+        this.cohorts = cohorts;
     }
 
     public long getId() {
