@@ -7,12 +7,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+// import jakarta.validation.constraints.NotBlank;
 
 
 
 @Entity
 public class Learner {
-
+    //@NotBlank(message = "Name cannot be blank")
     private String name;
     private String email;
     private String phoneNumber;

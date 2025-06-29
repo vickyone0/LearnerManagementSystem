@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.airtribe.LearnerManagementSystem.Exception.LearnerNotFoundException;
 import com.airtribe.LearnerManagementSystem.entity.Cohort;
+import com.airtribe.LearnerManagementSystem.entity.Learner;
 import com.airtribe.LearnerManagementSystem.service.LearnerService;
 
 @RestController
@@ -27,17 +29,25 @@ public class CohortController {
     }
 
 
-    @PostMapping("/assignLearner")
-    public Cohort assignLearnerToCohort(@RequestParam("cohortId") Long cohortId, 
-                                        @RequestParam("learnerId") Long learnerId) throws LearnerNotFoundException {
+    // @PostMapping("/assignLearner")
+    // public Cohort assignLearnerToCohort(@RequestParam("cohortId") Long cohortId, 
+    //                                     @RequestParam("learnerId") Long learnerId) throws LearnerNotFoundException {
      
-        return _LearnerService.assignLearnerToCohort(cohortId, learnerId);
-    }
+    //     return _LearnerService.assignLearnerToCohort(cohortId, learnerId);
+    // }
     
 
     @GetMapping("/cohorts")
     public List<Cohort> getAllCohort() {
         return _LearnerService.getAllCohorts();
+    }
+
+
+    @PostMapping("/cohorts/{cohortId}/learners")
+    public Cohort assignAndCreateLearnerToCohort(@RequestBody List<Learner> learners, 
+                                                @PathVariable("cohortId") Long cohortId) throws LearnerNotFoundException {
+        
+        return _LearnerService.assignAndCreateLearnerToCohort(cohortId, learners);
     }
 
 
